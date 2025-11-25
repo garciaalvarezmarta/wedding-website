@@ -1,0 +1,130 @@
+:root{
+  --navy: #0b2545; /* azul marino profundo */
+  --beige: #f5e9d6; /* beige suave */
+  --accent: #caa472; /* acento dorado suave */
+}
+
+body, #root {
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.app{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--beige) 0%, #fffaf6 100%);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(11,37,69,0.98), rgba(11,37,69,0.95));
+  color: var(--beige);
+  padding: 2.5rem 3rem;
+  border-radius: 14px;
+  max-width: 720px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(11,37,69,0.25);
+  border: 1px solid rgba(202,164,114,0.08);
+  text-align: center;
+}
+
+.names{
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 2.8rem;
+  margin: 0 0 0.2rem 0;
+  letter-spacing: 1px;
+}
+
+.phrase{
+  margin-top: 0.2rem;
+  color: rgba(245,233,214,0.9);
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.info{
+  margin-top: 1.6rem;
+  display: flex;
+  gap: 1.4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.item{
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(255,255,255,0.03);
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  min-width: 260px;
+}
+
+.item h3{
+  margin: 0 0 0.2rem 0;
+  font-size: 0.95rem;
+  color: var(--beige);
+}
+
+.item p{
+  margin: 0;
+  color: rgba(245,233,214,0.9);
+  font-size: 0.92rem;
+}
+
+.icon{
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.footer{
+  margin-top: 1.8rem;
+  color: rgba(245,233,214,0.8);
+}
+
+@media (max-width: 520px){
+  .card{ padding: 1.6rem; }
+  .names{ font-size: 2rem; }
+  .item{ min-width: 100%; }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
