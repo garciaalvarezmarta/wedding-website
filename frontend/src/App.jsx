@@ -134,33 +134,43 @@ function App() {
         </div>
       </section>
 
-      {/* DETALLES DEL EVENTO */}
       <section className="event-details">
         <h2>Detalles de la Celebración</h2>
-        <div className="details-grid">
-          <div className="detail-card">
-            <span className="detail-icon">⛪</span>
-            <h3>Ceremonia</h3>
-            <p className="time">15:00 h</p>
-            <p>Iglesia de San Miguel, Calle Mayor 45, 28001 Madrid</p>
-          </div>
-          <div className="detail-card">
-            <span className="detail-icon">🎉</span>
-            <h3>Recepción</h3>
-            <p className="time">17:00 h</p>
-            <p>Casa Jardín, Camino del Molino 10, 28450 Rivas-Vaciamadrid</p>
-          </div>
-          <div className="detail-card">
-            <span className="detail-icon">🍾</span>
-            <h3>Cóctel</h3>
-            <p className="time">17:30 h</p>
-            <p>Terraza con vistas y camarones frescos</p>
-          </div>
-          <div className="detail-card">
-            <span className="detail-icon">🍽️</span>
-            <h3>Cena</h3>
-            <p className="time">20:00 h</p>
-            <p>Menú especial preparado con amor por nuestro equipo</p>
+
+        <div className="timeline">
+          <div className="timeline-line" />
+          <div className="timeline-track">
+            <div className="timeline-item top">
+              <div className="timeline-card detail-card">
+                <h3>Ceremonia civil</h3>
+                <p className="time">18:30 h</p>
+                {/* <p>Ceremonia</p> */}
+              </div>
+            </div>
+
+            <div className="timeline-item bottom">
+              <div className="timeline-card detail-card">
+                <h3>Cóctel</h3>
+                <p className="time">19:00 h</p>
+                {/* <p>Casa Jardín, Camino del Molino 10, 28450 Rivas-Vaciamadrid</p> */}
+              </div>
+            </div>
+
+            <div className="timeline-item top">
+              <div className="timeline-card detail-card">
+                <h3>Cena</h3>
+                <p className="time">20:30 h</p>
+                {/* <p>Terraza con vistas y aperitivos especiales</p> */}
+              </div>
+            </div>
+
+            <div className="timeline-item bottom">
+              <div className="timeline-card detail-card">
+                <h3>Discoteca</h3>
+                <p className="time">20:00 h</p>
+                {/* <p>Con barra libre</p> */}
+              </div>
+            </div>
           </div>
         </div>
       </section>
