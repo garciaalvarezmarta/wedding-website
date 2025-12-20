@@ -22,8 +22,6 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
-  
-
   const IBAN = "IT48 Q036 6901 6005 1618 0234 674";
 
   const handleCopyIban = async () => {
@@ -45,7 +43,7 @@ function App() {
             <h1 className="hero-title">Sara &amp; Giuseppe</h1>
             <p className="hero-date">4 de Julio, 2026</p>
             <p className="hero-quote">
-              "Dos almas, un destino — acompáñanos a celebrar nuestro amor."
+              "Este es el comienzo de algo importante. - Casablanca"
             </p>
           </div>
         </section>
@@ -86,8 +84,8 @@ function App() {
           aquí, pero sobre todo compartirlo con las personas que más nos
           importan. Venid con ganas de disfrutar, de bailar, de reír y de darlo
           todo, porque creemos de verdad que los protagonistas de este día somos
-          todos. Si al final de la noche hay sonrisas, anécdotas y pies
-          cansados, sabremos que ha sido exactamente como lo imaginábamos.
+          todos. Si al final de la noche hay sonrisas y anécdotas, sabremos que
+          ha sido exactamente como lo imaginábamos.
         </p>
         <div className="about-image-wrapper">
           <img
@@ -153,7 +151,13 @@ function App() {
 
       <section className="event-details">
         <h2>Detalles de la Celebración</h2>
-
+        <div className="about-image-wrapper">
+          <img
+            src={process.env.PUBLIC_URL + "/tapiz.jpg"}
+            alt="Sara y Giuseppe"
+            className="about-image"
+          />
+        </div>
         <div className="timeline">
           <div className="timeline-line" />
           <div className="timeline-track">
@@ -199,7 +203,9 @@ function App() {
         <div className="location-map-wrap">
           <div className="map-header">
             <h3>Real Fábrica de Tapices</h3>
-            <p className="map-address">Plaza de la Reina Cristina, s/n, 28014 Madrid, España</p>
+            <p className="map-address">
+              Plaza de la Reina Cristina, s/n, 28014 Madrid, España
+            </p>
           </div>
 
           <div className="location-map-large">
@@ -213,100 +219,58 @@ function App() {
         </div>
       </section>
 
-
       {/* REGALOS */}
       <section className="gifts">
         <h2>Regalos y Contribuciones</h2>
         <div className="gifts-content">
           <p className="gifts-lead">
-            Vuestro cariño es nuestro mejor regalo. Si además queréis ayudarnos a
-            empezar esta nueva etapa, podéis hacerlo aquí:
+            Vuestro cariño es nuestro mejor regalo. Si además queréis ayudarnos
+            a empezar esta nueva etapa, podéis hacerlo aquí:
           </p>
 
-          <div className="gifts-options">
-            <div className="gift-option">
-              <h4>Transferencia Bancaria</h4>
-              <div className="iban-box">
-                <code className="iban">{IBAN}</code>
-                <button type="button" className="copy-iban" onClick={handleCopyIban}>
-                  Copiar IBAN
-                </button>
-              </div>
-              <p>
-                <strong>Beneficiario:</strong> Sara García Álvarez / Giuseppe Sgobba
-              </p>
-              {copiedIban && <span className="copy-success">¡IBAN copiado!</span>}
+          <div className="gift-option transfer-box">
+            <h4>Transferencia bancaria</h4>
+
+            <div className="iban-box">
+              <code className="iban">{IBAN}</code>
+              <button
+                type="button"
+                className="copy-iban"
+                onClick={handleCopyIban}
+              >
+                Copiar IBAN
+              </button>
             </div>
 
-            {/* <div className="gift-option">
-              <h4>Luna de Miel</h4>
-              <p>
-                Si preferís que la contribución sea destinada a nuestra luna de
-                miel, os lo agradeceremos de corazón. Cualquier importe nos
-                ayudará a comenzar esta nueva etapa.
-              </p>
-            </div> */}
+            <p className="iban-owner">
+              <strong>Beneficiarios:</strong> Sara García Álvarez · Giuseppe
+              Sgobba
+            </p>
+
+            {copiedIban && <span className="copy-success">IBAN copiado</span>}
           </div>
         </div>
       </section>
-
-      {/* ALOJAMIENTO
-      <section className="accommodation">
-        <h2>Alojamiento</h2>
-        <p>
-          Para los asistentes que vengan de fuera, recomendamos estos hoteles
-          cercanos con descuento especial mencionando nuestros nombres:
-        </p>
-        <div className="accommodation-list">
-          <div className="accommodation-item">
-            <h4>Hotel Elegancia Madrid ⭐⭐⭐⭐</h4>
-            <p>
-              Calle Príncipe 28, Madrid | Descuento: 15% | Tel: +34 91 123 4567
-            </p>
-          </div>
-          <div className="accommodation-item">
-            <h4>Casa Rural La Paz ⭐⭐⭐</h4>
-            <p>Rivas-Vaciamadrid | Descuento: 20% | Tel: +34 91 234 5678</p>
-          </div>
-          <div className="accommodation-item">
-            <h4>AirBnB y Booking</h4>
-            <p>
-              Amplia oferta en la zona | Consultar disponibilidad directamente
-            </p>
-          </div>
-        </div>
-      </section> */}
 
       {/* PREGUNTAS FRECUENTES */}
       <section className="faq">
         <h2>Preguntas Frecuentes</h2>
         <div className="faq-grid">
           <div className="faq-item">
-            <h4>¿Puedo llevar acompañante?</h4>
+            <h4>¿Puedo tirar tracas, petardos o fuegos artificiales?</h4>
             <p>
-              Por supuesto, nos encantará conocerlo. Solo te pedimos que lo
-              indiques en el RSVP para organizar el menú correctamente.
+              Está prohibido el uso de fuegos artificiales, Bengalas, Humo o
+              similares en todas las instalaciones tanto interiores como
+              exteriores.
             </p>
           </div>
           <div className="faq-item">
-            <h4>¿Hay opciones vegetarianas?</h4>
+            <h4>¿Se puede tirar confeti, arroz ó pétalos?</h4>
             <p>
-              Claro. Indicanos en el RSVP cualquier restricción dietética y nos
-              aseguraremos de que disfrutes de la comida.
-            </p>
-          </div>
-          <div className="faq-item">
-            <h4>¿Habrá guardería?</h4>
-            <p>
-              Sí, tenemos un espacio con cuidadores profesionales para los más
-              pequeños. Comunícanos si la necesitas.
-            </p>
-          </div>
-          <div className="faq-item">
-            <h4>¿Cuál es el código de vestimenta?</h4>
-            <p>
-              Formal elegante. Hombres: traje oscuro. Mujeres: vestido largo o
-              conjunto elegante. ¡Que brille el azul marino y el beige!
+              Únicamente se pueden tirar pétalos de Flores naturales en la plaza
+              de Teniers. Está terminantemente prohibido el arroz, confeti,
+              pétalos artificiales, cañones de confeti, etc. tanto en el
+              interior como el exterior.
             </p>
           </div>
         </div>
@@ -315,38 +279,54 @@ function App() {
       {/* RSVP removed: guests should confirm via email/phone (see footer) */}
 
       {/* FOOTER */}
-        {/* Confirmar asistencia - prominent section */}
-        <section className="confirm-contacts">
-          <h2>Confirmar asistencia</h2>
-          <p className="confirm-lead">Por favor contactad con cualquiera de los novios para confirmar asistencia</p>
-          <div className="contact-grid">
-            <div className="contact-card">
-              <div className="contact-avatar">S</div>
-              <div className="contact-body">
-                <div className="contact-name">Sara</div>
-                <a className="contact-link" href="tel:+34676754880">+34 676 754 880</a>
-                <a className="contact-link" href="mailto:sara.giuseppe.boda@gmail.com">sarita9322@gmail.com</a>
-              </div>
-            </div>
-
-            <div className="contact-card">
-              <div className="contact-avatar">G</div>
-              <div className="contact-body">
-                <div className="contact-name">Giuseppe</div>
-                <a className="contact-link" href="tel:+34612345678">+34 612 345 678</a>
-                <a className="contact-link" href="mailto:giuseppe@example.com">giuseppe@example.com</a>
-              </div>
+      {/* Confirmar asistencia - prominent section */}
+      <section className="confirm-contacts">
+        <h2>Confirmar asistencia</h2>
+        <p className="confirm-lead">
+          Por favor contactad con cualquiera de los novios para confirmar
+          asistencia
+        </p>
+        <div className="contact-grid">
+          <div className="contact-card">
+            <div className="contact-avatar">S</div>
+            <div className="contact-body">
+              <div className="contact-name">Sara</div>
+              <a className="contact-link" href="tel:+34676754880">
+                +34 676 754 880
+              </a>
+              <a className="contact-link" href="mailto:sarita9322@gmail.com">
+                sarita9322@gmail.com
+              </a>
             </div>
           </div>
-        </section>
 
-        {/* FOOTER */}
-        <footer className="footer">
-          <p>
-            Con todo nuestro amor, <strong>Sara &amp; Giuseppe</strong>
-          </p>
-          <p className="footer-text">Gracias por ser parte de nuestra historia.</p>
-        </footer>
+          <div className="contact-card">
+            <div className="contact-avatar">G</div>
+            <div className="contact-body">
+              <div className="contact-name">Giuseppe</div>
+              <a className="contact-link" href="tel:+343393370415">
+                +39 339 337 0415
+              </a>
+              <a
+                className="contact-link"
+                href="mailto:sgobba.giuseppe@yahoo.com"
+              >
+                sgobba.giuseppe@yahoo.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="footer">
+        <p>
+          Con todo nuestro amor, <strong>Sara &amp; Giuseppe</strong>
+        </p>
+        <p className="footer-text">
+          Gracias por ser parte de nuestra historia.
+        </p>
+      </footer>
     </div>
   );
 }
