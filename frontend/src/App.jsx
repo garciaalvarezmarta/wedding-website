@@ -3,14 +3,7 @@ import "./App.css";
 
 function App() {
   const [timeLeft, setTimeLeft] = useState({});
-  const [showRsvp, setShowRsvp] = useState(false);
-  const [rsvpData, setRsvpData] = useState({
-    name: "",
-    email: "",
-    guests: 1,
-    dietary: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [copiedIban, setCopiedIban] = useState(false);
 
   // Cuenta regresiva
   useEffect(() => {
@@ -29,20 +22,18 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
-  const handleRsvpChange = (e) => {
-    const { name, value } = e.target;
-    setRsvpData({ ...rsvpData, [name]: value });
-  };
+  
 
-  const handleRsvpSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    console.log("RSVP:", rsvpData);
-    setTimeout(() => {
-      setShowRsvp(false);
-      setRsvpData({ name: "", email: "", guests: 1, dietary: "" });
-      setSubmitted(false);
-    }, 2000);
+  const IBAN = "IT48 Q036 6901 6005 1618 0234 674";
+
+  const handleCopyIban = async () => {
+    try {
+      await navigator.clipboard.writeText(IBAN);
+      setCopiedIban(true);
+      setTimeout(() => setCopiedIban(false), 2000);
+    } catch (err) {
+      console.error("No se pudo copiar el IBAN:", err);
+    }
   };
 
   return (
@@ -83,15 +74,28 @@ function App() {
       <section className="about">
         <h2>Nuestra Historia</h2>
         <p>
-          Sara y Giuseppe se conocieron en un viaje a Italia hace cinco años. Lo
-          que comenzó como una aventura se convirtió en una historia de amor
-          infinita. Hoy celebramos el compromiso de pasar toda la vida juntos,
-          rodeados de nuestras personas más queridas.
+          Después de conocernos casi por casualidad, de despedidas, viajes,
+          distancia y una mudanza a Turín, hemos aprendido que lo más importante
+          es compartir la vida con complicidad, respeto y muchas ganas de
+          pasarlo bien. Así entendemos también este día: una boda de tarde, en
+          la Real Fábrica de Tapices, con ambiente de cine, buena comida y mucha
+          fiesta hasta que el cuerpo diga basta.
         </p>
         <p>
-          Nos encantaría que fueras parte de este día tan especial. Tu presencia
-          es el regalo más importante para nosotros.
+          Queremos celebrar el amor, la vida y todo lo que nos ha traído hasta
+          aquí, pero sobre todo compartirlo con las personas que más nos
+          importan. Venid con ganas de disfrutar, de bailar, de reír y de darlo
+          todo, porque creemos de verdad que los protagonistas de este día somos
+          todos. Si al final de la noche hay sonrisas, anécdotas y pies
+          cansados, sabremos que ha sido exactamente como lo imaginábamos.
         </p>
+        <div className="about-image-wrapper">
+          <img
+            src={process.env.PUBLIC_URL + "/GiuseppeSara.jpeg"}
+            alt="Sara y Giuseppe"
+            className="about-image"
+          />
+        </div>
       </section>
 
       {/* PAREJA */}
@@ -101,34 +105,47 @@ function App() {
         {/* Novia */}
         <div className="couple-section">
           <div className="couple-image-container couple-image-container-bride">
-            <img
-              src="https://static.wixstatic.com/media/84770f_fe3dcf168ab14985a003abe162b6aa67~mv2_d_4331_2436_s_4_2.jpg/v1/fit/w_988,h_699,q_90,enc_avif,quality_auto/84770f_fe3dcf168ab14985a003abe162b6aa67~mv2_d_4331_2436_s_4_2.jpg"
-              alt="Sara"
-            />
+            <img src={process.env.PUBLIC_URL + "/sara.jpeg"} alt="Sara" />
           </div>
           <div className="couple-info">
             <h3>Sara</h3>
             <p>
-              Soñadora, aventurera y amante del arte. Sara cree en el amor
-              verdadero y en vivir cada momento intensamente.
+              Sensible y soñadora, amante del cine y de la lectura. Siempre
+              tiene curiosidad por aprender cosas nuevas, aunque no se considera
+              especialmente romántica. Prefiere las historias bien contadas en
+              la pantalla o en un libro… y la vida, vivirla tal como viene.
+            </p>
+            <p>
+              Reservada, reflexiva y con gustos que ella misma define como “un
+              poco de vieja”, encuentra en Giuseppe a su roca: su apoyo en los
+              momentos difíciles y, sobre todo, su mejor amigo. Juntos se
+              entienden sin demasiadas palabras.
             </p>
           </div>
         </div>
 
         {/* Novio */}
-        <div className="couple-section">
+        <div className="couple-section groom-responsive">
           <div className="couple-info">
             <h3>Giuseppe</h3>
             <p>
-              Romántico, apasionado y dedicado. Giuseppe es el complemento
-              perfecto de Sara, siempre dispuesto a hacer sonreír.
+              La alegría en movimiento. Siempre sonriente, activo y con una
+              energía inagotable: si no está poniendo una lavadora, está
+              haciendo la compra, y si no, probablemente jugando al tenis. Y
+              todo con buena cara.
+            </p>
+            <p>
+              Divertido,espontáneo y amante del vino. Le encanta el pop juvenil,
+              la música electrónica y el tenis, y poco a poco va adentrándose en
+              el mundo del cine… gracias a Sara. Nunca se está quieto, pero
+              siempre está donde tiene que estar.
             </p>
           </div>
           <div className="couple-image-container couple-image-container-groom">
             <img
-              src="https://static.wixstatic.com/media/84770f_fe3dcf168ab14985a003abe162b6aa67~mv2_d_4331_2436_s_4_2.jpg/v1/fit/w_988,h_699,q_90,enc_avif,quality_auto/84770f_fe3dcf168ab14985a003abe162b6aa67~mv2_d_4331_2436_s_4_2.jpg"
-              alt="Sara"
-              width={"100%"}
+              src={process.env.PUBLIC_URL + "/giuseppe.jpeg"}
+              alt="Giuseppe"
+              width="100%"
             />
           </div>
         </div>
@@ -167,7 +184,7 @@ function App() {
             <div className="timeline-item bottom">
               <div className="timeline-card detail-card">
                 <h3>Discoteca</h3>
-                <p className="time">20:00 h</p>
+                <p className="time">23:00 h</p>
                 {/* <p>Con barra libre</p> */}
               </div>
             </div>
@@ -175,61 +192,65 @@ function App() {
         </div>
       </section>
 
-      {/* UBICACIÓN */}
+      {/* UBICACIÓN (mapa grande) */}
       <section className="location">
         <h2>Cómo Llegar</h2>
-        <div className="location-grid">
-          <div className="location-item">
-            <h3>📍 Ceremonia</h3>
-            <p>Iglesia de San Miguel, Calle Mayor 45, 28001 Madrid</p>
-            <p className="details">
-              Metro: Sol (línea 1, 2, 3) — Autobús: líneas 3, 5, 15
-            </p>
+
+        <div className="location-map-wrap">
+          <div className="map-header">
+            <h3>Real Fábrica de Tapices</h3>
+            <p className="map-address">Plaza de la Reina Cristina, s/n, 28014 Madrid, España</p>
           </div>
-          <div className="location-item">
-            <h3>🏰 Recepción</h3>
-            <p>Casa Jardín, Camino del Molino 10, 28450 Rivas-Vaciamadrid</p>
-            <p className="details">
-              Estacionamiento disponible | Entrada facilitada por la familia
-            </p>
+
+          <div className="location-map-large">
+            <iframe
+              title="Mapa Real Fábrica de Tapices"
+              src="https://www.google.com/maps?q=Real+F%C3%A1brica+de+Tapices,+Madrid&output=embed"
+              loading="lazy"
+              aria-label="Mapa con la ubicación de la Real Fábrica de Tapices"
+            />
           </div>
         </div>
       </section>
+
 
       {/* REGALOS */}
       <section className="gifts">
-        <h2>Regalos &amp; Contribuciones</h2>
+        <h2>Regalos y Contribuciones</h2>
         <div className="gifts-content">
-          <p>
-            Vuestra presencia es lo más importante, pero si deseáis contribuir a
-            nuestro futuro juntos, os dejamos estas opciones:
+          <p className="gifts-lead">
+            Vuestro cariño es nuestro mejor regalo. Si además queréis ayudarnos a
+            empezar esta nueva etapa, podéis hacerlo aquí:
           </p>
+
           <div className="gifts-options">
             <div className="gift-option">
-              <h4>💍 Lista de Bodas</h4>
+              <h4>Transferencia Bancaria</h4>
+              <div className="iban-box">
+                <code className="iban">{IBAN}</code>
+                <button type="button" className="copy-iban" onClick={handleCopyIban}>
+                  Copiar IBAN
+                </button>
+              </div>
               <p>
-                Disponible en <strong>Carrefour Wedding</strong> bajo nuestros
-                nombres
+                <strong>Beneficiario:</strong> Sara García Álvarez / Giuseppe Sgobba
               </p>
+              {copiedIban && <span className="copy-success">¡IBAN copiado!</span>}
             </div>
-            <div className="gift-option">
-              <h4>💰 Transferencia Bancaria</h4>
+
+            {/* <div className="gift-option">
+              <h4>Luna de Miel</h4>
               <p>
-                <strong>IBAN:</strong> ES91 2100 0418 4502 0005 1332
+                Si preferís que la contribución sea destinada a nuestra luna de
+                miel, os lo agradeceremos de corazón. Cualquier importe nos
+                ayudará a comenzar esta nueva etapa.
               </p>
-              <p>
-                <strong>Beneficiario:</strong> Sara González López
-              </p>
-            </div>
-            <div className="gift-option">
-              <h4>✈️ Luna de Miel</h4>
-              <p>¡Ayudadnos a hacer realidad nuestro viaje a Bali!</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
 
-      {/* ALOJAMIENTO */}
+      {/* ALOJAMIENTO
       <section className="accommodation">
         <h2>Alojamiento</h2>
         <p>
@@ -254,7 +275,7 @@ function App() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* PREGUNTAS FRECUENTES */}
       <section className="faq">
@@ -291,86 +312,41 @@ function App() {
         </div>
       </section>
 
-      {/* RSVP BUTTON */}
-      <section className="rsvp-section">
-        <button className="rsvp-button" onClick={() => setShowRsvp(true)}>
-          Confirmar Asistencia
-        </button>
-      </section>
-
-      {/* RSVP MODAL */}
-      {showRsvp && (
-        <div className="modal-overlay" onClick={() => setShowRsvp(false)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2>Confirmación de Asistencia</h2>
-            {submitted ? (
-              <div className="success-message">
-                <p>
-                  ¡Gracias {rsvpData.name}! Tu confirmación ha sido registrada.
-                </p>
-                <p>Te contactaremos pronto con los detalles finales.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleRsvpSubmit}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Tu nombre completo"
-                  value={rsvpData.name}
-                  onChange={handleRsvpChange}
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Tu email"
-                  value={rsvpData.email}
-                  onChange={handleRsvpChange}
-                  required
-                />
-                <select
-                  name="guests"
-                  value={rsvpData.guests}
-                  onChange={handleRsvpChange}
-                >
-                  <option value="1">1 invitado</option>
-                  <option value="2">2 invitados</option>
-                  <option value="3">3 invitados</option>
-                  <option value="4">4 invitados</option>
-                </select>
-                <textarea
-                  name="dietary"
-                  placeholder="Restricciones dietéticas o comentarios (opcional)"
-                  value={rsvpData.dietary}
-                  onChange={handleRsvpChange}
-                  rows="3"
-                />
-                <button type="submit" className="modal-button">
-                  Confirmar
-                </button>
-                <button
-                  type="button"
-                  className="modal-button-cancel"
-                  onClick={() => setShowRsvp(false)}
-                >
-                  Cancelar
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      )}
+      {/* RSVP removed: guests should confirm via email/phone (see footer) */}
 
       {/* FOOTER */}
-      <footer className="footer">
-        <p>
-          Con todo nuestro amor, <strong>Sara &amp; Giuseppe</strong>
-        </p>
-        <p>📧 sara.giuseppe.boda@gmail.com | 📱 +34 612 345 678</p>
-        <p className="footer-text">
-          Gracias por ser parte de nuestra historia.
-        </p>
-      </footer>
+        {/* Confirmar asistencia - prominent section */}
+        <section className="confirm-contacts">
+          <h2>Confirmar asistencia</h2>
+          <p className="confirm-lead">Por favor contactad con cualquiera de los novios para confirmar asistencia</p>
+          <div className="contact-grid">
+            <div className="contact-card">
+              <div className="contact-avatar">S</div>
+              <div className="contact-body">
+                <div className="contact-name">Sara</div>
+                <a className="contact-link" href="tel:+34676754880">+34 676 754 880</a>
+                <a className="contact-link" href="mailto:sara.giuseppe.boda@gmail.com">sarita9322@gmail.com</a>
+              </div>
+            </div>
+
+            <div className="contact-card">
+              <div className="contact-avatar">G</div>
+              <div className="contact-body">
+                <div className="contact-name">Giuseppe</div>
+                <a className="contact-link" href="tel:+34612345678">+34 612 345 678</a>
+                <a className="contact-link" href="mailto:giuseppe@example.com">giuseppe@example.com</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className="footer">
+          <p>
+            Con todo nuestro amor, <strong>Sara &amp; Giuseppe</strong>
+          </p>
+          <p className="footer-text">Gracias por ser parte de nuestra historia.</p>
+        </footer>
     </div>
   );
 }
