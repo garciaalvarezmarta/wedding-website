@@ -105,7 +105,7 @@ function App() {
         {/* Novia */}
         <div className="couple-section">
           <div className="couple-image-container couple-image-container-bride">
-            <img src={process.env.PUBLIC_URL + "/sara.jpeg"} alt="Sara" />
+            <img src={process.env.PUBLIC_URL + "/Sara.jpeg"} alt="Sara" />
           </div>
           <div className="couple-info">
             <h3>Sara</h3>
@@ -143,7 +143,7 @@ function App() {
           </div>
           <div className="couple-image-container couple-image-container-groom">
             <img
-              src={process.env.PUBLIC_URL + "/giuseppe.jpeg"}
+              src={process.env.PUBLIC_URL + "/Giuseppe.jpeg"}
               alt="Giuseppe"
               width="100%"
             />
