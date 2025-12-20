@@ -267,10 +267,9 @@ function App() {
           <div className="faq-item">
             <h4>¿Se puede tirar confeti, arroz ó pétalos?</h4>
             <p>
-              Únicamente se pueden tirar pétalos de Flores naturales en la plaza
-              de Teniers. Está terminantemente prohibido el arroz, confeti,
-              pétalos artificiales, cañones de confeti, etc. tanto en el
-              interior como el exterior.
+              Únicamente se pueden tirar pétalos de flores naturales. Está
+              terminantemente prohibido el arroz, confeti, pétalos artificiales,
+              cañones de confeti, etc. tanto en el interior como el exterior.
             </p>
           </div>
         </div>
