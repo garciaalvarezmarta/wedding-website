@@ -7,7 +7,7 @@ function App() {
 
   // Cuenta regresiva
   useEffect(() => {
-    const weddingDate = new Date("2026-06-20T15:00:00").getTime();
+    const weddingDate = new Date("2026-07-04T18:30:00").getTime();
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distance = weddingDate - now;
