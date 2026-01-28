@@ -4,6 +4,101 @@ import "./App.css";
 function App() {
   const [timeLeft, setTimeLeft] = useState({});
   const [copiedIban, setCopiedIban] = useState(false);
+  const [language, setLanguage] = useState("es"); // "es" or "it"
+
+  // Translations
+  const translations = {
+    es: {
+      ourStory: "Nuestra Historia",
+      ourStoryText: "Después de conocernos casi por casualidad, de despedidas, viajes, distancia y una mudanza a Turín, hemos aprendido que lo más importante es compartir la vida con complicidad, respeto y muchas ganas de pasarlo bien. Así entendemos también este día: una boda de tarde, en la Real Fábrica de Tapices, con ambiente de cine, buena comida y mucha fiesta hasta que el cuerpo diga basta.",
+      ourStoryText2: "Queremos celebrar el amor, la vida y todo lo que nos ha traído hasta aquí, pero sobre todo compartirlo con las personas que más nos importan. Venid con ganas de disfrutar, de bailar, de reír y de darlo todo, porque creemos de verdad que los protagonistas de este día somos todos. Si al final de la noche hay sonrisas, anécdotas y pies cansados, sabremos que ha sido exactamente como lo imaginábamos.",
+      theCouple: "Los Novios",
+      sara: "Sara",
+      saraDesc: "Sensible y soñadora, amante del cine y de la lectura. Siempre tiene curiosidad por aprender cosas nuevas, aunque no se considera especialmente romántica. Prefiere las historias bien contadas en la pantalla o en un libro… y la vida, vivirla tal como viene.\n\nReservada, reflexiva y con gustos que ella misma define como \"un poco de vieja\", encuentra en Giuseppe a su roca: su apoyo en los momentos difíciles y, sobre todo, su mejor amigo. Juntos se entienden sin demasiadas palabras.",
+      giuseppe: "Giuseppe",
+      giuseppeDesc: "La alegría en movimiento. Siempre sonriente, activo y con una energía inagotable: si no está poniendo una lavadora, está haciendo la compra, y si no, probablemente jugando al tenis. Y todo con buena cara.\n\nDivertido, espontáneo y amante del vino. Le encanta el pop juvenil, la música electrónica y el tenis, y poco a poco va adentrándose en el mundo del cine… gracias a Sara. Nunca se está quieto, pero siempre está donde tiene que estar.",
+      eventDetails: "Detalles de la Celebración",
+      ceremony: "Ceremonia civil",
+      cocktail: "Cóctel",
+      dinner: "Cena",
+      dancefloor: "Discoteca",
+      howToArrival: "Cómo Llegar",
+      realFactory: "Real Fábrica de Tapices",
+      address: "Plaza de la Reina Cristina, s/n, 28014 Madrid, España",
+      tapTheMap: "Pulsa en el mapa para abrir indicaciones en Google Maps.",
+      giftsTitle: "Regalos y Contribuciones",
+      giftsLead: "Vuestro cariño es nuestro mejor regalo. Si además queréis ayudarnos a empezar esta nueva etapa, podéis hacerlo aquí:",
+      bankTransfer: "Transferencia Bancaria",
+      copyIban: "Copiar IBAN",
+      beneficiary: "Beneficiario:",
+      honeymoon: "Luna de Miel",
+      honeymoonText: "Si preferís que la contribución sea destinada a nuestra luna de miel, os lo agradeceremos de corazón. Cualquier importe nos ayudará a comenzar esta nueva etapa.",
+      faqTitle: "Preguntas Frecuentes",
+      faq1Q: "¿Puedo llevar acompañante?",
+      faq1A: "Por supuesto, nos encantará conocerlo. Solo te pedimos que lo indiques en el RSVP para organizar el menú correctamente.",
+      faq2Q: "¿Hay opciones vegetarianas?",
+      faq2A: "Claro. Indicanos en el RSVP cualquier restricción dietética y nos aseguraremos de que disfrutes de la comida.",
+      faq3Q: "¿Habrá guardería?",
+      faq3A: "Sí, tenemos un espacio con cuidadores profesionales para los más pequeños. Comunícanos si la necesitas.",
+      faq4Q: "¿Cuál es el código de vestimenta?",
+      faq4A: "Formal elegante. Hombres: traje oscuro. Mujeres: vestido largo o conjunto elegante. ¡Que brille el azul marino y el beige!",
+      confirmAttendance: "Confirmar asistencia",
+      contactLead: "Por favor contactad con cualquiera de los novios para confirmar asistencia",
+      withOurLove: "Con todo nuestro amor",
+      thanks: "Gracias por ser parte de nuestra historia.",
+      countdown: "Faltan",
+      days: "Días",
+      hours: "Horas",
+      minutes: "Minutos",
+      heroQuote: "Este es el comienzo de algo importante. - Casablanca",
+    },
+    it: {
+      ourStory: "La nostra storia",
+      ourStoryText: "Dopo esserci conosciuti quasi per caso, tra saluti, viaggi, distanza e un trasferimento a Torino, abbiamo imparato che la cosa più importante è condividere la vita con complicità, rispetto e tanta voglia di divertirsi. È così che immaginiamo anche questo giorno: un matrimonio nel pomeriggio, alla Real Fábrica de Tapices, con un'atmosfera da cinema, buon cibo e tanta festa fino a quando il corpo dirà basta.",
+      ourStoryText2: "Vogliamo celebrare l'amore, la vita e tutto ciò che ci ha portati fin qui, ma soprattutto condividerlo con le persone che più contano per noi. Venite con la voglia di godervi la giornata, di ballare, ridere e dare il massimo, perché crediamo davvero che i protagonisti di questo giorno siamo tutti. Se a fine serata ci saranno sorrisi e aneddoti, sapremo che è stato esattamente come lo avevamo immaginato.",
+      theCouple: "Gli sposi",
+      sara: "Sara",
+      saraDesc: "Sensibile e sognatrice, amante del cinema e della lettura. Ha sempre curiosità di imparare cose nuove, anche se non si considera particolarmente romantica. Preferisce le storie ben raccontate sullo schermo o tra le pagine di un libro… e la vita, viverla così com'è.\n\nRiservata, riflessiva e con gusti che lei stessa definisce \"un po' da vecchia\", trova in Giuseppe la sua roccia: il suo sostegno nei momenti difficili e, soprattutto, il suo migliore amico. Insieme si capiscono senza bisogno di troppe parole.",
+      giuseppe: "Giuseppe",
+      giuseppeDesc: "Un concentrato di allegria in movimento. Sempre sorridente, attivo e con un'energia inesauribile: se non sta facendo una lavatrice, è a fare la spesa, e se no probabilmente sta giocando a tennis. E sempre con il sorriso.\n\nDivertente, spontaneo e amante del vino. Gli piace il pop giovanile, la musica elettronica e il tennis, e poco a poco si sta addentrando nel mondo del cinema… grazie a Sara. Non sta mai fermo, ma è sempre dove deve essere.",
+      eventDetails: "Dettagli della Celebrazione",
+      ceremony: "Cerimonia civile",
+      cocktail: "Cocktail",
+      dinner: "Cena",
+      dancefloor: "Discoteca",
+      howToArrival: "Come Arrivare",
+      realFactory: "Real Fábrica de Tapices",
+      address: "Plaza de la Reina Cristina, s/n, 28014 Madrid, Spagna",
+      tapTheMap: "Tocca la mappa per aprire le indicazioni in Google Maps.",
+      giftsTitle: "Regali e contributi",
+      giftsLead: "Il vostro affetto è il regalo più bello per noi. Se inoltre desiderate aiutarci a iniziare questa nuova fase della nostra vita, potete farlo qui:",
+      bankTransfer: "Bonifico bancario",
+      copyIban: "Copia IBAN",
+      beneficiary: "Intestatari:",
+      honeymoon: "Luna di miele",
+      honeymoonText: "Se preferite che il contributo sia destinato alla nostra luna di miele, ve ne saremo grati di cuore. Qualsiasi importo ci aiuterà a iniziare questa nuova fase.",
+      faqTitle: "Domande frequenti",
+      faq1Q: "Posso usare tric-trac, petardi o fuochi d'artificio?",
+      faq1A: "È vietato l'uso di fuochi d'artificio, bengala, fumi o simili in tutte le aree, sia interne che esterne.",
+      faq2Q: "È possibile lanciare coriandoli, riso o petali?",
+      faq2A: "È consentito esclusivamente l'uso di petali di fiori naturali. Sono severamente vietati riso, coriandoli, petali artificiali, cannoni spara-coriandoli, ecc., sia all'interno che all'esterno.",
+      faq3Q: "Dove sarà la cerimonia?",
+      faq3A: "La cerimonia si terrà alla Real Fábrica de Tapices a Madrid. Troverai tutte le informazioni logistiche nella sezione \"Come Arrivare\".",
+      faq4Q: "Qual è il codice di abbigliamento?",
+      faq4A: "Formale elegante. Uomini: abito scuro. Donne: abito lungo o insieme elegante.",
+      confirmAttendance: "Conferma di partecipazione",
+      contactLead: "Vi chiediamo gentilmente di contattare uno degli sposi per confermare la vostra presenza.",
+      withOurLove: "Con tutto il nostro amore",
+      thanks: "Grazie per essere parte della nostra storia.",
+      countdown: "Mancano",
+      days: "Giorni",
+      hours: "Ore",
+      minutes: "Minuti",
+      heroQuote: "Forse oggi noi inauguriamo una bella amicizia. - Casablanca",
+    },
+  };
+
+  const t = translations[language]; // Current language translations
 
   // Cuenta regresiva
   useEffect(() => {
@@ -35,7 +130,24 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <>
+      {/* LANGUAGE TOGGLE */}
+      <div className="language-toggle">
+        <button
+          className={`lang-btn ${language === "es" ? "active" : ""}`}
+          onClick={() => setLanguage("es")}
+        >
+          ES
+        </button>
+        <button
+          className={`lang-btn ${language === "it" ? "active" : ""}`}
+          onClick={() => setLanguage("it")}
+        >
+          IT
+        </button>
+      </div>
+      <div className="app">
+
       {/* HERO SECTION */}
       <header className="main-header">
         <section className="hero">
@@ -43,26 +155,26 @@ function App() {
             <h1 className="hero-title">Sara &amp; Giuseppe</h1>
             <p className="hero-date">4 de Julio, 2026</p>
             <p className="hero-quote">
-              "Este es el comienzo de algo importante. - Casablanca"
+              "{t.heroQuote}"
             </p>
           </div>
         </section>
 
         {/* CUENTA REGRESIVA */}
         <section className="countdown">
-          <h2>Faltan</h2>
+          <h2>{t.countdown}</h2>
           <div className="countdown-grid">
             <div className="countdown-item">
               <span className="countdown-number">{timeLeft.days || 0}</span>
-              <span className="countdown-label">Días</span>
+              <span className="countdown-label">{t.days}</span>
             </div>
             <div className="countdown-item">
               <span className="countdown-number">{timeLeft.hours || 0}</span>
-              <span className="countdown-label">Horas</span>
+              <span className="countdown-label">{t.hours}</span>
             </div>
             <div className="countdown-item">
               <span className="countdown-number">{timeLeft.minutes || 0}</span>
-              <span className="countdown-label">Minutos</span>
+              <span className="countdown-label">{t.minutes}</span>
             </div>
           </div>
         </section>
@@ -70,23 +182,9 @@ function App() {
 
       {/* DESCRIPCIÓN */}
       <section className="about">
-        <h2>Nuestra Historia</h2>
-        <p>
-          Después de conocernos casi por casualidad, de despedidas, viajes,
-          distancia y una mudanza a Turín, hemos aprendido que lo más importante
-          es compartir la vida con complicidad, respeto y muchas ganas de
-          pasarlo bien. Así entendemos también este día: una boda de tarde, en
-          la Real Fábrica de Tapices, con ambiente de cine, buena comida y mucha
-          fiesta hasta que el cuerpo diga basta.
-        </p>
-        <p>
-          Queremos celebrar el amor, la vida y todo lo que nos ha traído hasta
-          aquí, pero sobre todo compartirlo con las personas que más nos
-          importan. Venid con ganas de disfrutar, de bailar, de reír y de darlo
-          todo, porque creemos de verdad que los protagonistas de este día somos
-          todos. Si al final de la noche hay sonrisas y anécdotas, sabremos que
-          ha sido exactamente como lo imaginábamos.
-        </p>
+        <h2>{t.ourStory}</h2>
+        <p>{t.ourStoryText}</p>
+        <p>{t.ourStoryText2}</p>
         <div className="about-image-wrapper">
           <img
             src={process.env.PUBLIC_URL + "/GiuseppeSara.jpeg"}
@@ -98,7 +196,7 @@ function App() {
 
       {/* PAREJA */}
       <section className="couple">
-        <h2>Los Novios</h2>
+        <h2>{t.theCouple}</h2>
 
         {/* Novia */}
         <div className="couple-section">
@@ -106,38 +204,18 @@ function App() {
             <img src={process.env.PUBLIC_URL + "/Sara.jpeg"} alt="Sara" />
           </div>
           <div className="couple-info">
-            <h3>Sara</h3>
-            <p>
-              Sensible y soñadora, amante del cine y de la lectura. Siempre
-              tiene curiosidad por aprender cosas nuevas, aunque no se considera
-              especialmente romántica. Prefiere las historias bien contadas en
-              la pantalla o en un libro… y la vida, vivirla tal como viene.
-            </p>
-            <p>
-              Reservada, reflexiva y con gustos que ella misma define como “un
-              poco de vieja”, encuentra en Giuseppe a su roca: su apoyo en los
-              momentos difíciles y, sobre todo, su mejor amigo. Juntos se
-              entienden sin demasiadas palabras.
-            </p>
+            <h3>{t.sara}</h3>
+            <p>{t.saraDesc.split('\n\n')[0]}</p>
+            <p>{t.saraDesc.split('\n\n')[1]}</p>
           </div>
         </div>
 
         {/* Novio */}
         <div className="couple-section groom-responsive">
           <div className="couple-info">
-            <h3>Giuseppe</h3>
-            <p>
-              La alegría en movimiento. Siempre sonriente, activo y con una
-              energía inagotable: si no está poniendo una lavadora, está
-              haciendo la compra, y si no, probablemente jugando al tenis. Y
-              todo con buena cara.
-            </p>
-            <p>
-              Divertido,espontáneo y amante del vino. Le encanta el pop juvenil,
-              la música electrónica y el tenis, y poco a poco va adentrándose en
-              el mundo del cine… gracias a Sara. Nunca se está quieto, pero
-              siempre está donde tiene que estar.
-            </p>
+            <h3>{t.giuseppe}</h3>
+            <p>{t.giuseppeDesc.split('\n\n')[0]}</p>
+            <p>{t.giuseppeDesc.split('\n\n')[1]}</p>
           </div>
           <div className="couple-image-container couple-image-container-groom">
             <img
@@ -150,7 +228,7 @@ function App() {
       </section>
 
       <section className="event-details">
-        <h2>Detalles de la Celebración</h2>
+        <h2>{t.eventDetails}</h2>
         <div className="about-image-wrapper">
           <img
             src={process.env.PUBLIC_URL + "/tapiz.jpg"}
@@ -163,7 +241,7 @@ function App() {
           <div className="timeline-track">
             <div className="timeline-item top">
               <div className="timeline-card detail-card">
-                <h3>Ceremonia civil</h3>
+                <h3>{t.ceremony}</h3>
                 <p className="time">18:30 h</p>
                 {/* <p>Ceremonia</p> */}
               </div>
@@ -171,7 +249,7 @@ function App() {
 
             <div className="timeline-item bottom">
               <div className="timeline-card detail-card">
-                <h3>Cóctel</h3>
+                <h3>{t.cocktail}</h3>
                 <p className="time">19:00 h</p>
                 {/* <p>Casa Jardín, Camino del Molino 10, 28450 Rivas-Vaciamadrid</p> */}
               </div>
@@ -179,7 +257,7 @@ function App() {
 
             <div className="timeline-item top">
               <div className="timeline-card detail-card">
-                <h3>Cena</h3>
+                <h3>{t.dinner}</h3>
                 <p className="time">20:30 h</p>
                 {/* <p>Terraza con vistas y aperitivos especiales</p> */}
               </div>
@@ -187,7 +265,7 @@ function App() {
 
             <div className="timeline-item bottom">
               <div className="timeline-card detail-card">
-                <h3>Discoteca</h3>
+                <h3>{t.dancefloor}</h3>
                 <p className="time">23:00 h</p>
                 {/* <p>Con barra libre</p> */}
               </div>
@@ -198,13 +276,13 @@ function App() {
 
       {/* UBICACIÓN (mapa grande) */}
       <section className="location">
-        <h2>Cómo Llegar</h2>
+        <h2>{t.howToArrival}</h2>
 
         <div className="location-map-wrap">
           <div className="map-header">
-            <h3>Real Fábrica de Tapices</h3>
+            <h3>{t.realFactory}</h3>
             <p className="map-address">
-              Plaza de la Reina Cristina, s/n, 28014 Madrid, España
+              {t.address}
             </p>
           </div>
 
@@ -221,15 +299,14 @@ function App() {
 
       {/* REGALOS */}
       <section className="gifts">
-        <h2>Regalos y Contribuciones</h2>
+        <h2>{t.giftsTitle}</h2>
         <div className="gifts-content">
           <p className="gifts-lead">
-            Vuestro cariño es nuestro mejor regalo. Si además queréis ayudarnos
-            a empezar esta nueva etapa, podéis hacerlo aquí:
+            {t.giftsLead}
           </p>
 
           <div className="gift-option transfer-box">
-            <h4>Transferencia bancaria</h4>
+            <h4>{t.bankTransfer}</h4>
 
             <div className="iban-box">
               <code className="iban">{IBAN}</code>
@@ -238,39 +315,39 @@ function App() {
                 className="copy-iban"
                 onClick={handleCopyIban}
               >
-                Copiar IBAN
+                {t.copyIban}
               </button>
             </div>
 
             <p className="iban-owner">
-              <strong>Beneficiarios:</strong> Sara García Álvarez · Giuseppe
+              <strong>{t.beneficiary}</strong> Sara García Álvarez · Giuseppe
               Sgobba
             </p>
 
-            {copiedIban && <span className="copy-success">IBAN copiado</span>}
+            {copiedIban && <span className="copy-success">{t.copyIban} copiado</span>}
           </div>
         </div>
       </section>
 
       {/* PREGUNTAS FRECUENTES */}
       <section className="faq">
-        <h2>Preguntas Frecuentes</h2>
+        <h2>{t.faqTitle}</h2>
         <div className="faq-grid">
           <div className="faq-item">
-            <h4>¿Puedo tirar tracas, petardos o fuegos artificiales?</h4>
-            <p>
-              Está prohibido el uso de fuegos artificiales, Bengalas, Humo o
-              similares en todas las instalaciones tanto interiores como
-              exteriores.
-            </p>
+            <h4>{t.faq1Q}</h4>
+            <p>{t.faq1A}</p>
           </div>
           <div className="faq-item">
-            <h4>¿Se puede tirar confeti, arroz ó pétalos?</h4>
-            <p>
-              Únicamente se pueden tirar pétalos de flores naturales. Está
-              terminantemente prohibido el arroz, confeti, pétalos artificiales,
-              cañones de confeti, etc. tanto en el interior como el exterior.
-            </p>
+            <h4>{t.faq2Q}</h4>
+            <p>{t.faq2A}</p>
+          </div>
+          <div className="faq-item">
+            <h4>{t.faq3Q}</h4>
+            <p>{t.faq3A}</p>
+          </div>
+          <div className="faq-item">
+            <h4>{t.faq4Q}</h4>
+            <p>{t.faq4A}</p>
           </div>
         </div>
       </section>
@@ -280,10 +357,9 @@ function App() {
       {/* FOOTER */}
       {/* Confirmar asistencia - prominent section */}
       <section className="confirm-contacts">
-        <h2>Confirmar asistencia</h2>
+        <h2>{t.confirmAttendance}</h2>
         <p className="confirm-lead">
-          Por favor contactad con cualquiera de los novios para confirmar
-          asistencia
+          {t.contactLead}
         </p>
         <div className="contact-grid">
           <div className="contact-card">
@@ -320,13 +396,14 @@ function App() {
       {/* FOOTER */}
       <footer className="footer">
         <p>
-          Con todo nuestro amor, <strong>Sara &amp; Giuseppe</strong>
+          {t.withOurLove}, <strong>Sara &amp; Giuseppe</strong>
         </p>
         <p className="footer-text">
-          Gracias por ser parte de nuestra historia.
+          {t.thanks}
         </p>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }
 
