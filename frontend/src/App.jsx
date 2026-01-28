@@ -51,6 +51,7 @@ function App() {
       hours: "Horas",
       minutes: "Minutos",
       heroQuote: "Este es el comienzo de algo importante. - Casablanca",
+      weddingDate: "4 de Julio, 2026",
     },
     it: {
       ourStory: "La nostra storia",
@@ -65,7 +66,7 @@ function App() {
       ceremony: "Cerimonia civile",
       cocktail: "Cocktail",
       dinner: "Cena",
-      dancefloor: "Discoteca",
+      dancefloor: "Festa",
       howToArrival: "Come Arrivare",
       realFactory: "Real Fábrica de Tapices",
       address: "Plaza de la Reina Cristina, s/n, 28014 Madrid, Spagna",
@@ -95,6 +96,7 @@ function App() {
       hours: "Ore",
       minutes: "Minuti",
       heroQuote: "Forse oggi noi inauguriamo una bella amicizia. - Casablanca",
+      weddingDate: "4 luglio 2026",
     },
   };
 
@@ -153,7 +155,7 @@ function App() {
         <section className="hero">
           <div className="hero-content">
             <h1 className="hero-title">Sara &amp; Giuseppe</h1>
-            <p className="hero-date">4 de Julio, 2026</p>
+            <p className="hero-date">{t.weddingDate}</p>
             <p className="hero-quote">
               "{t.heroQuote}"
             </p>
