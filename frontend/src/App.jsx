@@ -34,16 +34,12 @@ function App() {
       honeymoon: "Luna de Miel",
       honeymoonText: "Si preferís que la contribución sea destinada a nuestra luna de miel, os lo agradeceremos de corazón. Cualquier importe nos ayudará a comenzar esta nueva etapa.",
       faqTitle: "Preguntas Frecuentes",
-      faq1Q: "¿Puedo llevar acompañante?",
-      faq1A: "Por supuesto, nos encantará conocerlo. Solo te pedimos que lo indiques en el RSVP para organizar el menú correctamente.",
-      faq2Q: "¿Hay opciones vegetarianas?",
-      faq2A: "Claro. Indicanos en el RSVP cualquier restricción dietética y nos aseguraremos de que disfrutes de la comida.",
-      faq3Q: "¿Habrá guardería?",
-      faq3A: "Sí, tenemos un espacio con cuidadores profesionales para los más pequeños. Comunícanos si la necesitas.",
-      faq4Q: "¿Cuál es el código de vestimenta?",
-      faq4A: "Formal elegante. Hombres: traje oscuro. Mujeres: vestido largo o conjunto elegante. ¡Que brille el azul marino y el beige!",
+      faq1Q: "¿Puedo tirar tracas, petardos o fuegos artificiales?",
+      faq1A: "Está prohibido el uso de fuegos artificiales, Bengalas, Humo o similares en todas las instalaciones tanto interiores como exteriores.",
+      faq2Q: "¿Se puede tirar confeti, arroz ó pétalos?",
+      faq2A: "Únicamente se pueden tirar pétalos de flores naturales. Está terminantemente prohibido el arroz, confeti, pétalos artificiales, cañones de confeti, etc. tanto en el interior como el exterior.",
       confirmAttendance: "Confirmar asistencia",
-      contactLead: "Por favor contactad con cualquiera de los novios para confirmar asistencia",
+      contactLead: "Por favor contactad con cualquiera de los novios para confirmar asistencia.",
       withOurLove: "Con todo nuestro amor",
       thanks: "Gracias por ser parte de nuestra historia.",
       countdown: "Faltan",
@@ -342,14 +338,6 @@ function App() {
           <div className="faq-item">
             <h4>{t.faq2Q}</h4>
             <p>{t.faq2A}</p>
-          </div>
-          <div className="faq-item">
-            <h4>{t.faq3Q}</h4>
-            <p>{t.faq3A}</p>
-          </div>
-          <div className="faq-item">
-            <h4>{t.faq4Q}</h4>
-            <p>{t.faq4A}</p>
           </div>
         </div>
       </section>
